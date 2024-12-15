@@ -10,7 +10,9 @@
     - Vielfältige Inhalte: Weltraumbilder, Fotos von Naturphänomenen, historische Ereignisse und wissenschaftliche Visualisierungen.
     - Detaillierte Informationen: Jedes Bild oder Video wird von einer ausführlichen Beschreibung begleitet.
     - Interaktive Benutzeroberfläche: Einfache Navigation und Informationsaustausch.
+    - Mehrsprachige Unterstützung: Übersetzungsfunktion für Titel und Erklärungen mit Möglichkeit zum Wechseln zwischen Deutsch und Englisch.
     - Responsive Design: Optimiert für Desktop und mobile Geräte.
+    - Einzigartiger Ladebildschirm: Eine LoadingSpinner-Komponente mit 50 animierten, zufällig platzierten und farbigen umlaufenden Planeten, jeweils mit eigener Umlaufbahn, Größe und Animationsgeschwindigkeit, die ein fesselndes Ladeerlebnis bietet und für mindestens 5 Sekunden angezeigt wird, um ein reibungsloses Benutzererlebnis zu gewährleisten.
 
 ### 🛠 Technische Details
 

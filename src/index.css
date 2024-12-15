@@ -23,6 +23,7 @@
   min-height: 100vh;
 }
 
+/* ---------- Main ---------- */
 .main-content {
   flex: 1;
   display: flex;
@@ -58,14 +59,7 @@
   border: none;
 }
 
-.bgGradient {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(to top, rgba(145, 145, 145, 0) 25%, rgb(0, 0, 0, 0.5));
-  /*background: linear-gradient(to top, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.5)); Wenn der Hintergrund hell ist, seht man den Text nicht */
-}
-
+/* ---------- Sidebar ---------- */
 .sidebar {
   width: 350px;
   height: 100vh;
@@ -89,7 +83,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.2rem;
   overflow-y: scroll;
   height: 100%;
   width: 90%;
@@ -113,8 +107,24 @@
   cursor: pointer;
 }
 
-.sidebarContents button:hover {
-  opacity: 0.7;
+.translateButton {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.translateButton:hover,
+.translateButton:focus {
+  transform: scale(1.2);
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+  transition: 0.5s;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  transform: scale(1.5);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+  transition: 0.5s;
 }
 
 .sidebarContents h2 {
@@ -134,34 +144,7 @@
   opacity: 0.8;
 }
 
-.loadingState {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  gap: 1rem;
-}
-
-.loadingState i, .loadingState p {
-  opacity: 0.2;
-  font-size: 3rem;
-}
-
-.loadingState i {
-  font-size: 5rem;
-  animation: spin 3s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* ---------- Footer ---------- */
 footer {
   position: fixed;
   bottom: 0;
@@ -199,12 +182,81 @@ footer button {
 }
 
 footer button:hover {
-  opacity: 0.7;
+  transform: scale(1.5);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+  transition: 0.5s;
+}
+
+footer button:focus {
+  transform: scale(1.5);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+  transition: 0.5s;
 }
 
 footer button i {
   font-size: 1.3rem;
   color: #fff;
+}
+
+.animate-info {
+  animation: pulseAndGlow 1s ease-in-out;
+}
+
+.bgGradient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(145, 145, 145, 0) 25%, rgb(0, 0, 0, 0.5));
+  /*background: linear-gradient(to top, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.5)); Wenn der Hintergrund hell ist, seht man den Text nicht */
+}
+/* ---------- LoadingSpinner ---------- */
+
+#square {
+  height: 720px;
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+#square p {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+
+span {
+  position: absolute;
+  background: transparent;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin linear infinite;
+}
+
+span div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+
+@keyframes spin {
+  0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 @keyframes pulseAndGlow {
@@ -222,12 +274,13 @@ footer button i {
   }
 }
 
-.animate-info {
-  animation: pulseAndGlow 1s ease-in-out;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
+@keyframes growAndGlow {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+  }
+  100% {
+    transform: scale(1.5);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
   }
 }

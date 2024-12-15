@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export const ErrorMessage = ({ message }) => (
   <div className="errorState">
-    <p>Error: {message}</p>
+    <p>Fehler: {message}</p>
   </div>
 );
 

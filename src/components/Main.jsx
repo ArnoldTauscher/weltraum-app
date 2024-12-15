@@ -6,7 +6,7 @@ export const Main = ({ data }) => (
       <div className='videoContainer'>
       <iframe
         src={data.url}
-        title={data.title || 'Astronomy Video of the Day'}
+        title={data.title || 'Astronomisches Video des Tages'}
         className='bgVideo'
         allowFullScreen
       />
@@ -15,7 +15,7 @@ export const Main = ({ data }) => (
       <div className='imgContainer'>
       <img 
         src={data?.hdurl || data?.url} 
-        alt={data?.title || 'Astronomy Picture of the Day'} 
+        alt={data?.title || 'Astronomisches Bild des Tages'} 
         className='bgImage'
       />
       </div>
@@ -31,5 +31,3 @@ Main.propTypes = {
     media_type: PropTypes.string
   })
 };
-
-

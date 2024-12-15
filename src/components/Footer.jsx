@@ -17,9 +17,9 @@ export const Footer = ({ handleToggleModal, data }) => {
       <div className='bgGradient'></div>
       <div>
         <h2>{data?.title}</h2>
-        <h1>APOD PROJECT</h1>
+        <h1>APOD PROJEKT</h1>
       </div>
-      <button onClick={handleToggleModal} aria-label="Toggle info">
+      <button onClick={handleToggleModal} aria-label="Info ein-/ausblenden">
         <i className={`fa-solid fa-circle-info ${animate ? 'animate-info' : ''}`}></i>
       </button>
     </footer>
@@ -32,3 +32,4 @@ Footer.propTypes = {
     title: PropTypes.string
   })
 };
+
