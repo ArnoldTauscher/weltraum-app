@@ -1,38 +1,46 @@
 import axios from 'axios';
 
+import { cacheData, getCachedData } from './cache';
+
 const API_KEY = import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY;
 const API_URL = import.meta.env.VITE_GOOGLE_TRANSLATE_API_URL;
+
+const translateApi = axios.create({
+  baseURL: API_URL,
+  params: { key: API_KEY },
+  headers: { 'Content-Type': 'application/json' }
+});
 
 export const translateAndStore = async (data) => {
   if (!data?.explanation || !data?.title) return null;
 
   try {
-    // API-Anfrage zur Übersetzung
-    const response = await axios.post(API_URL, {
+    const { data: translationData } = await translateApi.post('', {
       q: [data.explanation, data.title],
       target: 'de',
       format: 'text'
-    }, {
-      params: { key: API_KEY },
-      headers: { 'Content-Type': 'application/json' }
     });
 
-    // Extrahieren der übersetzten Texte
-    const [translatedExplanation, translatedTitle] = response.data.data.translations.map(t => t.translatedText);
-    const newTranslatedData = { explanation: translatedExplanation, title: translatedTitle };
+    const [translatedExplanation, translatedTitle] = translationData.data.translations.map(t => t.translatedText);
+    const newTranslatedData = {
+      ...data,
+      translatedExplanation,
+      translatedTitle,
+      needsTranslation: false
+    };
     
-    // Speichern der übersetzten Daten im lokalen Speicher
-    localStorage.setItem('translatedData', JSON.stringify(newTranslatedData));
+    const today = new Date().toDateString();
+    const localKey = `NASA-${today}`;
+    cacheData(localKey, newTranslatedData);
+
     return newTranslatedData;
   } catch (error) {
     console.error('Übersetzungsfehler:', error);
-    return null;
+    throw new Error('Übersetzung fehlgeschlagen. Bitte versuchen Sie es später erneut.');
   }
 };
 
-export const loadStoredTranslation = () => {
-  const storedTranslation = localStorage.getItem('translatedData');
-  return storedTranslation ? JSON.parse(storedTranslation) : null;
-};
+export const loadStoredTranslation = () => getCachedData('translatedData');
+
 
 

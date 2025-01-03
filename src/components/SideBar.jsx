@@ -5,7 +5,7 @@ export const SideBar = ({
   handleToggleModal,
   data,
   onTranslate,
-  isTranslated,
+  germanText,
 }) => {
   const translateButtonRef = useRef(null);
 
@@ -30,12 +30,12 @@ export const SideBar = ({
             onClick={handleTranslateClick}
             className="translateButton"
             aria-label={
-              isTranslated
+              germanText
                 ? "Zurück zur englischen Version"
                 : "Text ins Deutsche übersetzen"
             }
           >
-            {isTranslated ? "Show English" : "Übersetzen"}
+            {germanText ? "Show English" : "Übersetzen"}
           </button>
         </div>
         <button
@@ -58,5 +58,5 @@ SideBar.propTypes = {
     explanation: PropTypes.string,
   }),
   onTranslate: PropTypes.func.isRequired,
-  isTranslated: PropTypes.bool.isRequired,
+  germanText: PropTypes.bool.isRequired,
 };
